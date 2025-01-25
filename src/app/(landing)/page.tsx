@@ -168,7 +168,7 @@ export default function Home() {
             className="relative h-60 md:h-96 w-full mt-10 rounded-xl overflow-hidden"
           >
             <Image
-              src="/Ig-creators.png"
+              src="/images/Ig-creators.png"
               alt="Community members"
               fill
               className="object-cover"
