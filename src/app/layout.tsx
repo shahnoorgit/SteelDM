@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Slide",
+  title: "SteelDM",
   description: "Automate DMs and comments on instagram",
 };
 

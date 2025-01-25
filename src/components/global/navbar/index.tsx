@@ -10,6 +10,10 @@ import ClerkAuthState from "../clerk-auth-state";
 import { HelpDuoToneWhite } from "@/icons";
 import SubscriptionPlan from "../subscription-plan";
 import UpgradeCard from "../sidebar/upgrade";
+import CreateAutomation from "../create-automation";
+import Search from "../search";
+import Notification from "../notification";
+import MainBreadCrum from "../main-breadcrum";
 
 type Props = {
   slug: string;
@@ -57,7 +61,11 @@ const Navbar = ({ slug }: Props) => {
               </div>
             </Sheet>
           </span>
+          <Search />
+          <CreateAutomation />
+          <Notification />
         </div>
+        <MainBreadCrum page={page === slug ? "Home" : page} slug={slug} />
       </div>
     )
   );
