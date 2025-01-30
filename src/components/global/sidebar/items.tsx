@@ -15,7 +15,8 @@ const Items = ({ page, slug }: Props) => {
       href={`/dashboard/${slug}/${item.label === "home" ? "/" : item.label}`}
       className={cn(
         "capitalize flex gap-x-2 rounded-full p-3",
-        page === item.label && "bg-[#0f0f0f]",
+        page === item.label &&
+          "bg-[#0f0f0f] border-[1px] shadow transition-all ease-in-out shadow-[#AABBFF]",
         page === slug && item.label === "home"
           ? "bg-[#0f0f0f] border-[1px] shadow transition-all ease-in shadow-[#AABBFF]"
           : "text-[#9B9CA0]"

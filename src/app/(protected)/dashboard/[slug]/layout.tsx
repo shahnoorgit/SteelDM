@@ -7,16 +7,23 @@ type Props = {
   params: { slug: string };
 };
 
-const Layout = ({ children, params }: Props) => {
-  //query
-
+const Layout = async ({ children, params }: Props) => {
   return (
-    <div className=" p-3 ">
+    <div className="p-3">
       <Sidebar slug={params.slug} />
-      <div className="lg:ml-[300px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
+      <div
+        className="
+      lg:ml-[270px] 
+      lg:pl-10 
+      lg:py-5 
+      flex 
+      flex-col 
+      overflow-auto
+      "
+      >
         <Navbar slug={params.slug} />
+        {children}
       </div>
-      {children}
     </div>
   );
 };
