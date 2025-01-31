@@ -1,9 +1,19 @@
+import AutomationBreadCrumb from "@/components/global/bread-crumbs/automations";
 import React from "react";
 
-type Props = {};
+type Props = {
+  params: { id: string };
+};
 
-const Page = (props: Props) => {
-  return <div>Page</div>;
+//Meta setting
+
+const Page = ({ params }: Props) => {
+  //prefetch user automation
+  return (
+    <div className=" flex flex-col items-center gap-y-20">
+      <AutomationBreadCrumb id={params.id} />
+    </div>
+  );
 };
 
 export default Page;

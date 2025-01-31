@@ -13,7 +13,7 @@ import UpgradeCard from "../sidebar/upgrade";
 import CreateAutomation from "../create-automation";
 import Search from "../search";
 import Notification from "../notification";
-import MainBreadCrum from "../main-breadcrum";
+import MainBreadCrum from "../bread-crumbs/main-breadcrum";
 
 type Props = {
   slug: string;
