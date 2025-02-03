@@ -42,21 +42,22 @@ export const onBoardUser = async () => {
             console.log("Update token failed");
           }
         }
+        return {
+          status: 200,
+          data: {
+            firstname: found.firstname,
+            lastname: found.lastname,
+          },
+        };
       }
-      return {
-        status: 200,
-        data: {
-          firstName: found.firstname,
-          lastName: found.lastname,
-        },
-      };
-      const created = await createUser(
-        user.id,
-        user.firstName!,
-        user.lastName!,
-        user.emailAddresses[0].emailAddress
-      );
     }
+    const created = await createUser(
+      user.id,
+      user.firstName!,
+      user.lastName!,
+      user.emailAddresses[0].emailAddress
+    );
+    return { status: 201, data: created };
   } catch (error) {
     console.log(error);
     return { status: 500, data: { message: "internal server error" } };
