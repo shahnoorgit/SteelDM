@@ -7,10 +7,13 @@ import GradientButton from "../gradient-button";
 import { Button } from "@/components/ui/button";
 import { useQueryAutomations } from "@/hooks/user.queries";
 import CreateAutomation from "../create-automation";
+import { useMutationDataState } from "@/hooks/use-mutation-data";
 
 const AutomationList = () => {
   const { pathname } = usePath();
   const { data } = useQueryAutomations();
+  const { latestVariable } = useMutationDataState(["create-automation"]);
+  console.log(latestVariable);
   console.log(data);
   if (data?.status !== 200 || data?.data.length <= 0) {
     return (
