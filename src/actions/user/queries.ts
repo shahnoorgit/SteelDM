@@ -3,6 +3,7 @@
 import { client } from "@/lib/prisma";
 
 export const findUser = async (clerkId: string) => {
+  console.log(clerkId);
   return await client.user.findUnique({
     where: {
       clerkId,
@@ -25,11 +26,13 @@ export const createUser = async (
   clerkId: string,
   firstname: string,
   lastname: string,
+  userName: string,
   email: string
 ) => {
   return await client.user.create({
     data: {
       clerkId,
+      userName,
       firstname,
       lastname,
       email,
@@ -40,6 +43,7 @@ export const createUser = async (
     select: {
       firstname: true,
       lastname: true,
+      userName: true,
     },
   });
 };

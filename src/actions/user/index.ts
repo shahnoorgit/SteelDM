@@ -53,6 +53,7 @@ export const onBoardUser = async () => {
       return {
         status: 200,
         data: {
+          userName: found.userName,
           firstname: found.firstname,
           lastname: found.lastname,
         },
@@ -64,6 +65,7 @@ export const onBoardUser = async () => {
       user.id,
       user.firstName!,
       user.lastName!,
+      user.username!,
       user.emailAddresses[0].emailAddress
     );
     return { status: 201, data: created };

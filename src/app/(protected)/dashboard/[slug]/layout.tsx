@@ -35,7 +35,7 @@ const Layout = async ({ children, params }: Props) => {
       overflow-auto
       "
         >
-          <Navbar slug={params.slug} />
+          <Navbar slug={params?.slug} />
           {children}
         </div>
       </div>
