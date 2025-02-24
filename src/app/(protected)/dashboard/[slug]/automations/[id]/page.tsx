@@ -10,9 +10,6 @@ import {
 } from "@tanstack/react-query";
 import { prefetchUserAutomation } from "@/react-query/prefetch";
 import { getAllAutomationInfo } from "@/actions/automations";
-type Props = {
-  params: { id: string };
-};
 
 //Meta setting
 export async function GenerateMetaData({ params }: { params: { id: string } }) {
@@ -22,16 +19,16 @@ export async function GenerateMetaData({ params }: { params: { id: string } }) {
   };
 }
 
-const Page = async ({ params }: Props) => {
+const Page = async ({ params }: { params: { id: string } }) => {
   const query = new QueryClient();
   await prefetchUserAutomation(query, params.id);
+
   return (
     <HydrationBoundary state={dehydrate(query)}>
-      {" "}
-      <div className=" flex flex-col items-center gap-y-20">
+      <div className="flex flex-col items-center gap-y-20">
         <AutomationBreadCrumb id={params.id} />
         <div className="w-full lg:w-10/12 xl:w-6/12 p-5 rounded-xl flex flex-col gap-y-3 bg-[#1d1d1d]">
-          <div className=" flex gap-x-2">
+          <div className="flex gap-x-2">
             <Warning />
             when...
           </div>
