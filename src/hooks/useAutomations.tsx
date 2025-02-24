@@ -34,12 +34,14 @@ export const useEditAutomation = (automationId: string) => {
   );
 
   function handleClickOutside(event: MouseEvent) {
-    console.log("Hi");
-    if (name != "") {
+    console.log("Hi", nameRef);
+    if (nameRef.current != "") {
+      console.log("Hi2");
       if (nameRef.current !== "") {
+        console.log("Hi3");
         mutate({ name: nameRef.current });
       } else {
-        console.log("Hi");
+        console.log("Hi4");
         disableEdit();
       }
     }
