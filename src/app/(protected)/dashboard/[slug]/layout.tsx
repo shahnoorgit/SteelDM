@@ -1,38 +1,40 @@
+"use client";
+
+import React, { useEffect } from "react";
 import Navbar from "@/components/global/navbar";
 import Sidebar from "@/components/global/sidebar";
-import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
-import {
-  prefetchUserAutomations,
   prefetchUserProfile,
+  prefetchUserAutomations,
 } from "@/react-query/prefetch";
 
-const Layout = async ({
-  children,
-  params,
-}: {
+type Props = {
   children: React.ReactNode;
   params: { slug: string };
-}) => {
-  const query = new QueryClient();
+};
 
-  await prefetchUserProfile(query);
-  await prefetchUserAutomations(query);
+const queryClient = new QueryClient();
+
+const Layout = ({ children, params: { slug } }: Props) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      await prefetchUserProfile(queryClient);
+      await prefetchUserAutomations(queryClient);
+    };
+    fetchData();
+  }, []);
 
   return (
-    <HydrationBoundary state={dehydrate(query)}>
+    <QueryClientProvider client={queryClient}>
       <div className="p-3">
-        <Sidebar slug={params.slug} />
+        <Sidebar slug={slug} />
         <div className="lg:ml-[270px] lg:pl-10 lg:py-5 flex flex-col overflow-auto">
-          <Navbar slug={params.slug} />
+          <Navbar slug={slug} />
           {children}
         </div>
       </div>
-    </HydrationBoundary>
+    </QueryClientProvider>
   );
 };
 

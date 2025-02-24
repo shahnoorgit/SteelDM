@@ -68,6 +68,7 @@ export const onBoardUser = async () => {
       user.username!,
       user.emailAddresses[0].emailAddress
     );
+    console.log(created);
     return { status: 201, data: created };
   } catch (error) {
     console.log(error);
