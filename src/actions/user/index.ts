@@ -71,8 +71,9 @@ export const onBoardUser = async () => {
     console.log(created);
     return { status: 201, data: created };
   } catch (error) {
-    console.log(error);
-    return { status: 500, data: { message: "internal server error" } };
+    if (error instanceof Error) {
+      console.log("Error: ", error.stack);
+    }
   }
 };
 

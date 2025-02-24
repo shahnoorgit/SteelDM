@@ -4,6 +4,7 @@ import React from "react";
 
 const Page = async () => {
   const user = await onBoardUser();
+  console.log("user got", user);
   if (user?.status == 200 || user?.status === 201) {
     return redirect(`/dashboard/${user?.data?.userName}`);
   }
