@@ -3,6 +3,7 @@ import { useQueryAutomation } from "@/hooks/user.queries";
 import React from "react";
 import ActiveTrigger from "../../automation-list/trigger";
 import { Separator } from "@/components/ui/separator";
+import ThenComponent from "../../automation-list/then/then-action";
 
 type Props = {
   id: string;
@@ -34,18 +35,19 @@ const Trigger = ({ id }: Props) => {
             className=" border-muted border-[1px]"
           />
         </div>
-      </>
 
-      <ActiveTrigger
-        type={"MESSAGE"}
-        keywords={[
-          {
-            id: "42121$ghj",
-            word: "DM",
-            automationId: id,
-          },
-        ]}
-      />
+        <ActiveTrigger
+          type={"MESSAGE"}
+          keywords={[
+            {
+              id: "42121$ghj",
+              word: "DM",
+              automationId: id,
+            },
+          ]}
+        />
+      </>
+      <ThenComponent id={id} />
     </div>
   );
   // }

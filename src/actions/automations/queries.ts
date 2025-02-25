@@ -60,3 +60,19 @@ export const updateAutomation = async (
     },
   });
 };
+
+export const addListner = async (
+  automationId: string,
+  listener: "MESSAGE" | "SMARTAI",
+  prompt: string,
+  reply?: string
+) => {
+  return await client.automation.update({
+    where: { id: automationId },
+    data: {
+      listener: {
+        create: { listener, prompt, commentReply: reply },
+      },
+    },
+  });
+};

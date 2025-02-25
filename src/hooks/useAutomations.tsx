@@ -1,7 +1,13 @@
 "use client";
-import { createAutomations, updateAutomationName } from "@/actions/automations";
+import {
+  createAutomations,
+  saveListener,
+  updateAutomationName,
+} from "@/actions/automations";
 import { useMutationData } from "./use-mutation-data";
 import { useEffect, useRef, useState } from "react";
+import { z } from "zod";
+import useZodForm from "./use-zodForm";
 
 export const useCreateAutomation = (id?: string) => {
   const { isPending, mutate } = useMutationData(
@@ -63,5 +69,38 @@ export const useEditAutomation = (automationId: string) => {
     isPending,
     name, // Return name state
     setName, // Return setName to update input value
+  };
+};
+
+export const useListener = (id: string) => {
+  const [listener, setListener] = useState<"MESSAGE" | "SMARTAI" | null>(null);
+  const promptSchema = z.object({
+    prompt: z.string().min(1),
+    reply: z.string(),
+  });
+
+  const { mutate, isPending } = useMutationData(
+    ["create-listner"],
+    (data: { prompt: string; reply: string }) =>
+      saveListener(id, listener || "MESSAGE", data.prompt, data.reply),
+    "automation-info"
+  );
+
+  const { register, errors, onFormSubmit, reset, watch } = useZodForm({
+    schema: promptSchema,
+    mutation: mutate,
+  });
+
+  const onsetListener = (type: "MESSAGE" | "SMARTAI") => {
+    console.log(type);
+    setListener("MESSAGE");
+  };
+
+  return {
+    isPending,
+    onsetListener,
+    listener,
+    register,
+    onFormSubmit,
   };
 };

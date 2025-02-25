@@ -3,6 +3,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { onCurrentUser } from "../user";
 import {
+  addListner,
   createAutomation,
   findAutomation,
   getAutomations,
@@ -59,5 +60,22 @@ export const updateAutomationName = async (
   } catch (error) {
     console.log(error);
     return { status: 500, data: "internal server error" };
+  }
+};
+
+export const saveListener = async (
+  automationId: string,
+  listener: "MESSAGE" | "SMARTAI",
+  prompt: string,
+  reply?: string
+) => {
+  await onCurrentUser();
+  try {
+    const create = await addListner(automationId, listener, prompt, reply);
+    if (create) return { status: 200, data: "Listener added successfully" };
+    return { status: 404, data: "Opps something went wrong" };
+  } catch (error) {
+    console.log(error);
+    return { status: 500, data: "Internal server error" };
   }
 };
